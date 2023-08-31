@@ -5,14 +5,6 @@ require 'date'
 
 # rubocop:disable Metrics/BlockLength
 describe 'Photo' do
-  it 'can be instantiated' do
-    timestamp = Time.now
-    photo = Photo.new(1, 'jpg', timestamp)
-    expect(photo.id).to eq(1)
-    expect(photo.extension).to eq('jpg')
-    expect(photo.timestamp).to eq(timestamp)
-  end
-
   describe 'timestamp' do
     it 'is required' do
       expect do

@@ -21,7 +21,7 @@ class Photo
   def validate_extension(extension)
     raise ArgumentError, 'File extension is required' if extension.nil?
     raise ArgumentError, 'File extension must be a string' unless extension.is_a? String
-    raise ArgumentError, 'File extension is required' if extension.empty?
+    raise ArgumentError, 'File extension cannot be empty' if extension.empty?
     raise ArgumentError, "#{extension} is not a supported file extension" unless EXTENSIONS.include? extension.downcase
   end
 
