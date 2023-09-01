@@ -12,7 +12,7 @@ class Photo
     validate_extension(extension)
 
     @id = id
-    @extension = extension.downcase
+    @extension = extension
     @timestamp = timestamp
   end
 

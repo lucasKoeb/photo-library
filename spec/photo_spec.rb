@@ -42,12 +42,6 @@ describe 'Photo' do
       expect(jpeg_photo.extension).to eq('jpeg')
     end
 
-    it 'accepts and converts upcase values' do
-      timestamp = Time.now
-      photo = Photo.new(1, 'JPG', timestamp)
-      expect(photo.extension).to eq('jpg')
-    end
-
     it 'raises an argument error if unknown' do
       expect do
         Photo.new(1, 'pdf', Time.now)

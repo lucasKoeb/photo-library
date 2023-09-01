@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'renamed_photo'
+
 # PhotoGroup represents a collection of photos that share the same location
 class PhotoGroup
   attr_reader :location
@@ -15,18 +17,22 @@ class PhotoGroup
     @photos << photo
   end
 
-  def sorted_photo_names
-    photos = {}
+  def renamed_photos
+    photos = []
     @photos.sort_by(&:timestamp).each_with_index do |photo, index|
-      photos[photo.id] = formatted_name(photo, index)
+      photos << RenamedPhoto.new(photo.id, format_name(photo, index))
     end
     photos
   end
 
   protected
 
-  def formatted_name(photo, index)
-    "#{@location}#{index + 1}.#{photo.extension}"
+  def format_name(photo, index)
+    "#{@location}#{format(index_format, index + 1)}.#{photo.extension}"
+  end
+
+  def index_format
+    "%0#{Math.log10(@photos.length + 1).ceil}d"
   end
 
   def validate_location(location)
