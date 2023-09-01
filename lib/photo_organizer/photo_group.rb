@@ -14,6 +14,8 @@ class PhotoGroup
   end
 
   def add_photo(photo)
+    raise 'Duplicate timestamps are not allowed.' if @photos.any? { |p| p.timestamp == photo.timestamp }
+
     @photos << photo
   end
 

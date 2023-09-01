@@ -24,6 +24,16 @@ describe 'PhotoGroup' do
       end.to raise_error(ArgumentError)
     end
 
+    it 'should not allow duplicate timestamps' do
+      first_photo = Photo.new(1, 'jpeg', Time.new('2023-08-30 10:00:00'))
+      second_photo = Photo.new(2, 'jpeg', Time.new('2023-08-30 10:00:00'))
+      group = PhotoGroup.new('Florianopolis')
+      group.add_photo first_photo
+      expect do
+        group.add_photo second_photo
+      end.to raise_error(RuntimeError)
+    end
+
     it 'returns photos sorted by timestamp' do
       first_photo = Photo.new(1, 'jpeg', Time.new('2023-08-30 10:00:00'))
       second_photo = Photo.new(2, 'jpeg', Time.new('2023-08-30 09:55:00'))
