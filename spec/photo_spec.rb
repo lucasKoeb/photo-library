@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'photo_organizer/photo'
+require 'photos/photo'
 require 'date'
 
 # rubocop:disable Metrics/BlockLength
